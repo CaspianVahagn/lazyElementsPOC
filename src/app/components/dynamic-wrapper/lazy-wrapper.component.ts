@@ -12,10 +12,10 @@ import {
 
 
 @Component({
-  selector: 'app-dyno-wrapper',
-  templateUrl: './dyno-wrapper.component.html'
+  selector: 'app-lazy-wrapper',
+  templateUrl: './lazy-wrapper.component.html'
 })
-export class DynoWrapperComponent implements AfterViewInit {
+export class LazyWrapperComponent implements AfterViewInit {
   constructor(private factory: ComponentFactoryResolver, private injector: Injector) {
   }
 
@@ -30,23 +30,22 @@ export class DynoWrapperComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if(this.component){
+      // execute the import of the proxy class
       this.component.prototype.metaProxyImport().then((r: { [x: string]: Type<unknown>; }) => {
         // @ts-ignore
-        console.log('OK1');
-        // @ts-ignore
-        console.log(this.component.prototype.metaName);
-        console.log('OK2');
-        console.log(r);
-        // @ts-ignore
+        // get the component from moduly by the name of the proxy class decorator
+        try {
         const component = r[this.component.prototype.metaName];
         const resolver = this.factory.resolveComponentFactory(component);
-        console.log('OK3');
         // @ts-ignore
         const ref: ComponentRef<any> = this.outletRef.createComponent(resolver);
         this.lazyComponentLoaded.emit(ref);
+        }catch (e){
+          console.error("Module: ", r, " could not be loaded with component: ", this.component.prototype.metaName, e )
+        }
       })
     }else {
-      console.error("NO Component Found!! Cant load")
+      console.error("No Component Found!! Cant load")
     }
 
   }
@@ -54,10 +53,10 @@ export class DynoWrapperComponent implements AfterViewInit {
 
 @NgModule({
   declarations: [
-    DynoWrapperComponent
+    LazyWrapperComponent
   ],
   exports: [
-    DynoWrapperComponent
+    LazyWrapperComponent
   ]
 })
 export class DynoModule {

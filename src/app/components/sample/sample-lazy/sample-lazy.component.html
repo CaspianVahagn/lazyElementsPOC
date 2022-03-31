@@ -1,2 +1,6 @@
-<textarea [(ngModel)]="text" (ngModelChange)="textChange($event)"></textarea>
-<app-dyno-wrapper [component]="proxy" (lazyComponentLoaded)="doSomething($event)"></app-dyno-wrapper>
+
+<div class="wrapper-lazy">
+  <textarea style="width: 100%;min-height: 5rem;" [(ngModel)]="text" (ngModelChange)="textChange($event)"></textarea>
+  <app-lazy-wrapper [component]="proxy" (lazyComponentLoaded)="onLazyLoadedComponent($event)"></app-lazy-wrapper>
+</div>
+

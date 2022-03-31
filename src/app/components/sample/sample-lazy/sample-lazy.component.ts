@@ -17,7 +17,7 @@ export class SampleLazyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public doSomething($event: ComponentRef<MarkdownProxy>): void {
+  public onLazyLoadedComponent($event: ComponentRef<MarkdownProxy>): void {
     console.log("instance loaded")
     this.instaceOfProxy = $event.instance
   }

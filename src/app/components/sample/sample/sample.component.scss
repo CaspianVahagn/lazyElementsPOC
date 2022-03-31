@@ -1,0 +1,17 @@
+.sample-button{
+  margin: 0.5rem;
+  border-radius: 1rem;
+  font-size: 15px;
+  padding: 1rem;
+  font-weight: bold;
+  background: antiquewhite;
+  transition: all 200ms;
+  box-shadow: 1px 1px 15px #333333;
+  border: none;
+  &:hover{
+    background: aquamarine;
+  }
+  &:active{
+    background: cyan !important;
+  }
+}
