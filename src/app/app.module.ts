@@ -7,6 +7,8 @@ import {SampleComponent} from "./components/sample/sample/sample.component";
 import {createCustomElement} from "@angular/elements";
 import {SampleLazyComponent} from "./components/sample/sample-lazy/sample-lazy.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     SampleModule,
     BrowserAnimationsModule
   ],

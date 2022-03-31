@@ -1,18 +1,24 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonModule} from "@angular/material/button";
+import {LazyLoaderProxy} from "./LazyLoader.proxy";
 
 @Component({
   selector: 'app-lazy-loader',
   templateUrl: './lazy-loader.component.html',
   styleUrls: ['./lazy-loader.component.scss']
 })
-export class LazyLoaderComponent implements OnInit {
+export class LazyLoaderComponent extends LazyLoaderProxy implements OnInit {
   public panelOpenState: boolean = false;
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
+  }
+
+  public evento(): void {
   }
 
 }

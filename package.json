@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:elements:" :"ng build --prod --output-hashing=none && node concat.js",
-    "serve:elements-build" : "npx http-server .\\dist\\lazyElementsPOC\\\n"
+    "build:elements:": "ng build --prod --output-hashing=none && node concat.js",
+    "serve:elements-build": "npx http-server .\\dist\\lazyElementsPOC\\\n"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +23,11 @@
     "@angular/platform-browser": "~12.0.4",
     "@angular/platform-browser-dynamic": "~12.0.4",
     "@angular/router": "~12.0.4",
+    "@types/dompurify": "^2.3.3",
+    "@types/marked": "^4.0.3",
     "document-register-element": "^1.7.2",
+    "dompurify": "^2.3.6",
+    "marked": "^4.0.12",
     "postcss-scss": "^3.0.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SampleComponent } from './sample/sample.component';
 import { SampleLazyComponent } from './sample-lazy/sample-lazy.component';
 import {DynoModule} from "../dynamic-wrapper/dyno-wrapper.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -13,7 +14,9 @@ import {DynoModule} from "../dynamic-wrapper/dyno-wrapper.component";
   ],
   imports: [
     CommonModule,
-    DynoModule
+    DynoModule,
+    FormsModule,
+
   ]
 })
 export class SampleModule { }

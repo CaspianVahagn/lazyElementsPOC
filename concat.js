@@ -10,4 +10,5 @@ const fs = require('fs');
   await fse.ensureDir('lazyElementsPOC')
   await concat(files, 'dist/lazyElementsPOC/elements.js');
   await fse.copy('./prePareIndex/index.html','dist/lazyElementsPOC/index.html' )
+  await fse.copy('./prePareIndex/pagetwo.html','dist/lazyElementsPOC/pagetwo.html' )
 })()

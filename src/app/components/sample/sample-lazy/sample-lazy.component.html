@@ -1,1 +1,2 @@
-<app-dyno-wrapper [component]="proxy"></app-dyno-wrapper>
+<textarea [(ngModel)]="text" (ngModelChange)="textChange($event)"></textarea>
+<app-dyno-wrapper [component]="proxy" (lazyComponentLoaded)="doSomething($event)"></app-dyno-wrapper>

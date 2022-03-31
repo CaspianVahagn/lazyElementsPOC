@@ -2,14 +2,13 @@ import {
   AfterViewInit,
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
+  ComponentRef, EventEmitter, Injector,
   Input,
-  NgModule,
+  NgModule, Output,
   Type,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {timer} from "rxjs";
 
 
 @Component({
@@ -17,7 +16,7 @@ import {timer} from "rxjs";
   templateUrl: './dyno-wrapper.component.html'
 })
 export class DynoWrapperComponent implements AfterViewInit {
-  constructor(private factory: ComponentFactoryResolver) {
+  constructor(private factory: ComponentFactoryResolver, private injector: Injector) {
   }
 
   @ViewChild('outletRef', {read: ViewContainerRef})
@@ -25,6 +24,9 @@ export class DynoWrapperComponent implements AfterViewInit {
 
   @Input()
   public component!: any;
+
+  @Output()
+  public lazyComponentLoaded = new EventEmitter<ComponentRef<any>>();
 
   ngAfterViewInit(): void {
     if(this.component){
@@ -36,10 +38,12 @@ export class DynoWrapperComponent implements AfterViewInit {
         console.log('OK2');
         console.log(r);
         // @ts-ignore
-        const resolver = this.factory.resolveComponentFactory(r[this.component.prototype.metaName]);
+        const component = r[this.component.prototype.metaName];
+        const resolver = this.factory.resolveComponentFactory(component);
         console.log('OK3');
         // @ts-ignore
         const ref: ComponentRef<any> = this.outletRef.createComponent(resolver);
+        this.lazyComponentLoaded.emit(ref);
       })
     }else {
       console.error("NO Component Found!! Cant load")
